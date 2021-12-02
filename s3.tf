@@ -32,7 +32,7 @@ resource "aws_s3_bucket" "public" {
   force_destroy = true
 }
 resource "aws_s3_bucket" "alb_log" {
-  bucket = "alb-log-${var.r_prifix}-terraform-yama"
+  bucket = "alb-log-${var.r_prefix}-terraform-yama"
 
   lifecycle_rule {
     enabled = true
