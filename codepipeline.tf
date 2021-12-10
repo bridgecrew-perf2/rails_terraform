@@ -12,8 +12,8 @@ resource "aws_codepipeline" "example" {
       output_artifacts = ["Source"]
       configuration = {
         ConnectionArn        = aws_codestarconnections_connection.github.arn
-        FullRepositoryId     = var.github_repo
-        BranchName           = var.github_branch
+        FullRepositoryId     = data.github_repository.example.full_name
+        BranchName           = data.github_repository.example.branches[0]["name"]
         OutputArtifactFormat = "CODEBUILD_CLONE_REF"
       }
     }
@@ -71,7 +71,7 @@ resource "aws_codepipeline_webhook" "example" {
 
 
 
-resource "aws_codestarconnections_connection" "github" {
-  name          = "${var.r_prefix}-github"
-  provider_type = "GitHub"
-}
+# resource "aws_codestarconnections_connection" "github" {
+#   name          = "${var.r_prefix}-github"
+#   provider_type = "GitHub"
+# }
