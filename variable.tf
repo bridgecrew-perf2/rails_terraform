@@ -19,3 +19,11 @@ variable "az" {
   type    = list(string)
   default = ["1a", "1c"]
 }
+
+variable "github_repo" {
+  default = "mountaincenter/rails_terraform"
+}
+
+variable "github_branch" {
+  default = "master"
+}
