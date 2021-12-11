@@ -1,3 +1,7 @@
+resource "aws_codestarconnections_connection" "github" {
+  name          = "${var.r_prefix}-github"
+  provider_type = "GitHub"
+}
 resource "aws_codepipeline" "example" {
   name     = var.r_prefix
   role_arn = module.codepipeline_role.iam_role_arn
@@ -61,17 +65,10 @@ resource "aws_codepipeline_webhook" "example" {
   target_action   = "Source"
   authentication  = "GITHUB_HMAC"
   authentication_configuration {
-    secret_token = aws_ssm_parameter.github_personal_access_token.value
+    secret_token = "VeryRandomStringMoreThan20Byte!"
   }
   filter {
     json_path    = "$.ref"
     match_equals = "refs/heads/{Branch}"
   }
 }
-
-
-
-# resource "aws_codestarconnections_connection" "github" {
-#   name          = "${var.r_prefix}-github"
-#   provider_type = "GitHub"
-# }

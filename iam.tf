@@ -25,7 +25,6 @@ module "codebuild_role" {
   identifier = "codebuild.amazonaws.com"
   policy     = data.aws_iam_policy_document.codebuild.json
 }
-
 module "codepipeline_role" {
   source     = "./iam_role"
   name       = "codepipeline"
